@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html th:replace="commons/layout::base(~{::title}, ~{::form})"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<form th:action="@{/login}" method="post">
+		<h3>Sign In</h3>
+		<div th:if="${param.logout}">You have been logged out.</div>
+		<div th:if="${param.error}">Invalid Username or Password.</div>
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" placeholder="Username" />
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" placeholder="Password" />
+		<input type="submit" value="Login" />
+		<div>&copy;2018 Max Ramos All Rights Reserved</div>
+	</form>
+</body>
+</html>

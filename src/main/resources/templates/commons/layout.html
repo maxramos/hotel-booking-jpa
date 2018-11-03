@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html th:fragment="base(title, content)"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link type="text/css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" rel="stylesheet" />
+	<link type="text/css" th:href="@{/css/style.css}" rel="stylesheet" />
+	<title th:replace="${title}"></title>
+</head>
+<body>
+	<header>	
+	</header>
+	<div>
+		<section th:replace="${content}"></section>
+	</div>		
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>
