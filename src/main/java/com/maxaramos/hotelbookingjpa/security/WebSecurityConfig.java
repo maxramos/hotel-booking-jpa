@@ -97,9 +97,6 @@ public class WebSecurityConfig {
 	@Configuration
 	public static class PageSecurityConfig extends WebSecurityConfigurerAdapter {
 
-		@Autowired
-		private LoginSuccessHandler loginSuccessHandler;
-
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
@@ -112,7 +109,6 @@ public class WebSecurityConfig {
 					.and()
 				.formLogin()
 					.loginPage("/login")
-					.successHandler(loginSuccessHandler)
 					.and()
 				.headers()
 					.frameOptions().sameOrigin()

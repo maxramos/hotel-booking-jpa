@@ -19,8 +19,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "user")
 public class User implements UserDetails {
 
-	public static final String LOGGED_IN_USER_ATTR = "loggedInUser";
-
 	private static final long serialVersionUID = -5689181961184462831L;
 
 	@Id
