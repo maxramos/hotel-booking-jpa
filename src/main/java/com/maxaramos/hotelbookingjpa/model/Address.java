@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.maxaramos.hotelbookingjpa.jsonview.DetailsView;
+
 @Embeddable
 public class Address implements Serializable {
 
@@ -28,6 +31,7 @@ public class Address implements Serializable {
 	@Column(name = "zip_code")
 	private String zipCode;
 
+	@JsonView(DetailsView.class)
 	public String getAddress1() {
 		return address1;
 	}
@@ -36,6 +40,7 @@ public class Address implements Serializable {
 		this.address1 = address1;
 	}
 
+	@JsonView(DetailsView.class)
 	public String getAddress2() {
 		return address2;
 	}
@@ -44,6 +49,7 @@ public class Address implements Serializable {
 		this.address2 = address2;
 	}
 
+	@JsonView(DetailsView.class)
 	public String getCity() {
 		return city;
 	}
@@ -52,6 +58,7 @@ public class Address implements Serializable {
 		this.city = city;
 	}
 
+	@JsonView(DetailsView.class)
 	public String getState() {
 		return state;
 	}
@@ -60,6 +67,7 @@ public class Address implements Serializable {
 		this.state = state;
 	}
 
+	@JsonView(DetailsView.class)
 	public String getCountry() {
 		return country;
 	}
@@ -68,6 +76,7 @@ public class Address implements Serializable {
 		this.country = country;
 	}
 
+	@JsonView(DetailsView.class)
 	public String getZipCode() {
 		return zipCode;
 	}

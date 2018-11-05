@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.maxaramos.hotelbookingjpa.jsonview.DetailsView;
+
 @Embeddable
 public class ContactDetails implements Serializable {
 
@@ -19,6 +22,7 @@ public class ContactDetails implements Serializable {
 	@Column(name = "landline")
 	private String landline;
 
+	@JsonView(DetailsView.class)
 	public String getEmail() {
 		return email;
 	}
@@ -27,6 +31,7 @@ public class ContactDetails implements Serializable {
 		this.email = email;
 	}
 
+	@JsonView(DetailsView.class)
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -35,6 +40,7 @@ public class ContactDetails implements Serializable {
 		this.mobileNumber = mobileNumber;
 	}
 
+	@JsonView(DetailsView.class)
 	public String getLandline() {
 		return landline;
 	}

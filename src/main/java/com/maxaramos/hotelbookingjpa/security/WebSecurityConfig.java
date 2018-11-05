@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.maxaramos.hotelbookingjpa.service.UserService;
 
@@ -76,7 +78,11 @@ public class WebSecurityConfig {
 			http
 				.antMatcher("/api/**")
 				.authorizeRequests()
-					.antMatchers("/api/hotels").hasRole("ADMIN")
+					.requestMatchers(
+							new AntPathRequestMatcher("/api/hotels/{id}", HttpMethod.GET.toString()),
+							new AntPathRequestMatcher("/api/hotels", HttpMethod.PUT.toString()))
+						.hasAnyRole("ADMIN", "MANAGER")
+					.antMatchers("/api/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.httpBasic()
@@ -99,7 +105,11 @@ public class WebSecurityConfig {
 			http
 				.authorizeRequests()
 					.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-					.antMatchers("/hotel/list").hasRole("ADMIN")
+					.requestMatchers(
+							new AntPathRequestMatcher("/hotel/{id}/details", HttpMethod.GET.toString()),
+							new AntPathRequestMatcher("/hotel/update", HttpMethod.POST.toString()))
+						.hasAnyRole("ADMIN", "MANAGER")
+					.antMatchers("/hotel/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.formLogin()

@@ -20,4 +20,12 @@ public class HotelService {
 		return hotelDao.findAll();
 	}
 
+	public Hotel findById(Long id) {
+		return hotelDao.findById(id).orElse(null);
+	}
+
+	public Hotel save(Hotel hotel) {
+		return hotelDao.save(hotel);
+	}
+
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html th:replace="commons/layout::base(~{::title}, ~{::section})"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<title>Hotel</title>
+</head>
+<body>
+	<section>
+		<form th:action="@{/hotel/update}" th:object="${hotel}" method="post">
+			<div>
+				<div>
+					<h5>Basic</h5>
+					<div>
+						<label for="name">Name</label>
+						<input type="text" th:field="*{name}" />
+						<div th:errors="*{name}"></div>
+					</div>
+					<div>
+						<label for="managerFullName">Manager</label>
+						<input type="text" th:field="*{managerFullName}" readonly />
+					</div >
+				</div>
+				<div>
+					<h5>Contact Details</h5>
+					<div>
+						<label for="contactDetails.email">Email</label>
+						<input type="text" th:field="*{contactDetails.email}" />
+						<div th:errors="*{contactDetails.email}"></div>
+					</div>
+					<div>
+						<label for="contactDetails.mobileNumber">Mobile Number</label>
+						<input type="text" th:field="*{contactDetails.mobileNumber}" />
+						<div th:errors="*{contactDetails.mobileNumber}"></div>
+					</div>
+					<div>
+						<label for="contactDetails.landline">Landline</label>
+						<input type="text" th:field="*{contactDetails.landline}" />
+						<div th:errors="*{contactDetails.landline}"></div>
+					</div>
+				</div>
+				<div>
+					<h5>Address</h5>
+					<div>
+						<label for="address.address1">Address1</label>
+						<input type="text" th:field="*{address.address1}" />
+						<div th:errors="*{address.address1}"></div>
+					</div>
+					<div>
+						<label for="address.address2">Address2</label>
+						<input type="text" th:field="*{address.address2}" />
+						<div th:errors="*{address.address2}"></div>
+					</div>
+					<div>
+						<label for="address.city">City</label>
+						<input type="text" th:field="*{address.city}" />
+						<div th:errors="*{address.city}"></div>
+					</div>
+					<div>
+						<label for="address.state">State</label>
+						<input type="text" th:field="*{address.state}" />
+						<div th:errors="*{address.state}"></div>
+					</div>
+					<div>
+						<label for="address.country">Country</label>
+						<input type="text" th:field="*{address.country}" />
+						<div th:errors="*{address.country}"></div>
+					</div>
+					<div>
+						<label for="address.zipCode">Zip Code</label>
+						<input type="text" th:field="*{address.zipCode}" />
+						<div th:errors="*{address.zipCode}"></div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+</body>
+</html>

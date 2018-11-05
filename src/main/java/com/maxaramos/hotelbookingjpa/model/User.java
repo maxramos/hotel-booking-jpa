@@ -17,9 +17,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.maxaramos.hotelbookingjpa.jsonview.ListView;
-
 @Entity
 @Table(name = "user")
 public class User implements UserDetails {
@@ -131,7 +128,6 @@ public class User implements UserDetails {
 		this.lastName = lastName;
 	}
 
-	@JsonView({ ListView.class })
 	public String getFullName() {
 		if (StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName)) {
 			return null;

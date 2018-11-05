@@ -21,7 +21,7 @@
 					<tr th:each="hotel,status : ${hotels}">
 						<td th:text="${status.count}"></td>
 						<td th:text="${hotel.name}"></td>
-						<td th:text="${hotel.manager?.fullName}"></td>
+						<td th:text="${hotel.managerFullName}"></td>
 					</tr>
 				</tbody>
 			</table>

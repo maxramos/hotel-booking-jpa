@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.maxaramos.hotelbookingjpa.jsonview.DetailsView;
 import com.maxaramos.hotelbookingjpa.jsonview.ListView;
 
 @Entity
@@ -54,11 +55,12 @@ public class Hotel implements Serializable {
 	@Embedded
 	private Address address;
 
+	@JsonView({ ListView.class, DetailsView.class })
 	public Long getId() {
 		return id;
 	}
 
-	@JsonView({ ListView.class })
+	@JsonView({ ListView.class, DetailsView.class })
 	public String getName() {
 		return name;
 	}
@@ -67,6 +69,7 @@ public class Hotel implements Serializable {
 		this.name = name;
 	}
 
+	@JsonView(DetailsView.class)
 	public boolean isActive() {
 		return active;
 	}
@@ -75,13 +78,21 @@ public class Hotel implements Serializable {
 		this.active = active;
 	}
 
-	@JsonView({ ListView.class })
 	public User getManager() {
 		return manager;
 	}
 
 	public void setManager(User manager) {
 		this.manager = manager;
+	}
+
+	@JsonView({ ListView.class, DetailsView.class })
+	public String getManagerFullName() {
+		if (manager == null) {
+			return null;
+		}
+
+		return manager.getFullName();
 	}
 
 	public List<User> getReceptionists() {
@@ -100,6 +111,7 @@ public class Hotel implements Serializable {
 		this.rooms = rooms;
 	}
 
+	@JsonView(DetailsView.class)
 	public ContactDetails getContactDetails() {
 		return contactDetails;
 	}
@@ -108,6 +120,7 @@ public class Hotel implements Serializable {
 		this.contactDetails = contactDetails;
 	}
 
+	@JsonView(DetailsView.class)
 	public Address getAddress() {
 		return address;
 	}
