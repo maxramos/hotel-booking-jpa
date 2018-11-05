@@ -7,7 +7,7 @@ CREATE TABLE user (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
 	username VARCHAR(20) NOT NULL UNIQUE,
 	password VARCHAR(60) NOT NULL,
-	role_id BIGINT REFERENCES role(id),
+	role_id BIGINT NOT NULL,
 	enabled BOOLEAN NOT NULL,
 	first_name VARCHAR(20),
 	last_name VARCHAR(20),
@@ -19,7 +19,8 @@ CREATE TABLE user (
 	city VARCHAR(20),
 	state VARCHAR(20),
 	country VARCHAR(20),
-	zip_code VARCHAR(10)
+	zip_code VARCHAR(10),
+	FOREIGN KEY(role_id) REFERENCES role(id)
 );
 
 CREATE TABLE hotel (
@@ -46,21 +47,24 @@ CREATE TABLE hotel_receptionist (
 
 CREATE TABLE room (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
-	room_number VARCHAR(10) NOT NULL UNIQUE,
-	hotel_id BIGINT REFERENCES hotel(id),
+	room_number VARCHAR(10) NOT NULL,
+	hotel_id BIGINT NOT NULL,
 	active BOOLEAN NOT NULL,
-	rate DECIMAL(6,2)
+	rate DECIMAL(8,2),
+	FOREIGN KEY(hotel_id) REFERENCES hotel(id)
 );
 
 CREATE TABLE booking (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	booking_type VARCHAR(28) NOT NULL,
 	booking_number VARCHAR(10) NOT NULL UNIQUE,
-	room_id BIGINT REFERENCES room(id),
+	room_id BIGINT NOT NULL,
 	start_date DATE NOT NULL,
 	end_date DATE NOT NULL,
 	guest_user_id BIGINT REFERENCES user(id),
 	first_name VARCHAR(20),
 	last_name VARCHAR(20),
 	email VARCHAR(30),
-	mobile_number VARCHAR(20)
+	mobile_number VARCHAR(20),
+	FOREIGN KEY(room_id) REFERENCES room(id),
 );
