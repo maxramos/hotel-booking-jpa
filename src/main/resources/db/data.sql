@@ -1,7 +1,8 @@
 -- *** ROLE ***
 INSERT INTO role(id, name) VALUES(1, 'ROLE_ADMIN');
 INSERT INTO role(id, name) VALUES(2, 'ROLE_MANAGER');
-INSERT INTO role(id, name) VALUES(3, 'ROLE_GUEST');
+INSERT INTO role(id, name) VALUES(3, 'ROLE_RECEPTIONIST');
+INSERT INTO role(id, name) VALUES(4, 'ROLE_GUEST');
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -29,6 +29,9 @@ public class Hotel implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "active")
+	private boolean active;
+
 	@OneToOne
 	@JoinColumn(name = "manager_user_id")
 	private User manager;
@@ -58,6 +61,14 @@ public class Hotel implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public User getManager() {

@@ -10,16 +10,16 @@ public class NonRegisteredGuestBooking extends Booking {
 
 	private static final long serialVersionUID = 7139745070593743387L;
 
-	@Column(name = "guest_first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name = "guest_last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "guest_email")
+	@Column(name = "email")
 	private String email;
 
-	@Column(name = "guest_mobile_number")
+	@Column(name = "mobile_number")
 	private String mobileNumber;
 
 	public String getFirstName() {

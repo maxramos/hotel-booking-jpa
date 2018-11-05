@@ -30,6 +30,9 @@ public class Room implements Serializable {
 	@JoinColumn(name = "hotel_id")
 	private Hotel hotel;
 
+	@Column(name = "active")
+	private boolean active;
+
 	@Column(name = "rate")
 	private BigDecimal rate;
 
@@ -51,6 +54,14 @@ public class Room implements Serializable {
 
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public BigDecimal getRate() {
