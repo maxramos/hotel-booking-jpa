@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -77,18 +76,16 @@ public class WebSecurityConfig {
 			http
 				.antMatcher("/api/**")
 				.authorizeRequests()
-					.antMatchers(HttpMethod.POST).hasRole("ADMIN")
-					.antMatchers(HttpMethod.PUT).hasRole("ADMIN")
-					.antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+					.antMatchers("/api/hotels").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.httpBasic()
+					.authenticationEntryPoint(basicAuthenticationEntryPoint)
 					.and()
 //				.addFilterAt(digestAuthenticationFilter, BasicAuthenticationFilter.class)
-				.exceptionHandling()
-					.authenticationEntryPoint(basicAuthenticationEntryPoint)
+//				.exceptionHandling()
 //					.authenticationEntryPoint(digestAuthenticationEntryPoint)
-					.and()
+//					.and()
 				.csrf().disable();
 		}
 
@@ -101,14 +98,13 @@ public class WebSecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			http
 				.authorizeRequests()
-					.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/login").permitAll()
-					.antMatchers("/admin/**", "/registration/**", "/department/**").hasRole("ADMIN")
-					.antMatchers("/team/**").hasAnyRole("ADMIN", "DEPTHEAD")
-					.antMatchers("/user/list").hasAnyRole("ADMIN", "DEPTHEAD", "SUPERVISOR")
+					.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
+					.antMatchers("/hotel/list").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.formLogin()
 					.loginPage("/login")
+					.permitAll()
 					.and()
 				.headers()
 					.frameOptions().sameOrigin()

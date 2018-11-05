@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html th:replace="commons/layout::base(~{::title}, ~{::section})"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<title>Hotel</title>
+</head>
+<body>
+	<section>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Manager</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="hotel,status : ${hotels}">
+						<td th:text="${status.count}"></td>
+						<td th:text="${hotel.name}"></td>
+						<td th:text="${hotel.manager?.fullName}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</body>
+</html>

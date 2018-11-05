@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.maxaramos.hotelbookingjpa.jsonview.ListView;
+
 @Entity
 @Table(name = "hotel")
 public class Hotel implements Serializable {
@@ -55,6 +58,7 @@ public class Hotel implements Serializable {
 		return id;
 	}
 
+	@JsonView({ ListView.class })
 	public String getName() {
 		return name;
 	}
@@ -71,6 +75,7 @@ public class Hotel implements Serializable {
 		this.active = active;
 	}
 
+	@JsonView({ ListView.class })
 	public User getManager() {
 		return manager;
 	}
