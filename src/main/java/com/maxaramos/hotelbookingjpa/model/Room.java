@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.maxaramos.hotelbookingjpa.jsonview.CollectionView;
+import com.maxaramos.hotelbookingjpa.jsonview.ItemView;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,9 +30,11 @@ public class Room implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private Long id;
 
 	@Column(name = "room_number")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private String roomNumber;
 
 	@ManyToOne
@@ -36,9 +42,20 @@ public class Room implements Serializable {
 	private Hotel hotel;
 
 	@Column(name = "active")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private boolean active;
 
 	@Column(name = "rate")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private BigDecimal rate;
+
+	@JsonView({ CollectionView.class, ItemView.class })
+	public String getHotelName() {
+		if (hotel == null) {
+			return null;
+		}
+
+		return hotel.getName();
+	}
 
 }
