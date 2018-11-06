@@ -15,10 +15,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "booking")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "booking_type")
+@Getter
+@Setter
 public abstract class Booking implements Serializable {
 
 	private static final long serialVersionUID = -8364114384630756651L;
@@ -40,41 +45,5 @@ public abstract class Booking implements Serializable {
 
 	@Column(name = "end_date")
 	private LocalDate endDate;
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getBookingNumber() {
-		return bookingNumber;
-	}
-
-	public void setBookingNumber(String bookingNumber) {
-		this.bookingNumber = bookingNumber;
-	}
-
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
 
 }

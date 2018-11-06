@@ -12,13 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = -5689181961184462831L;
@@ -53,79 +59,18 @@ public class User implements UserDetails {
 	@Embedded
 	private Address address;
 
-	public Long getId() {
-		return id;
-	}
+	@Transient
+	private boolean accountNonLocked = true;
 
-	@Override
-	public String getUsername() {
-		return username;
-	}
+	@Transient
+	private boolean accountNonExpired = true;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	@Override
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
+	@Transient
+	private boolean credentialsNonExpired = true;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Collections.singleton(role);
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getFullName() {
@@ -142,22 +87,6 @@ public class User implements UserDetails {
 		}
 
 		return firstName + " " + lastName;
-	}
-
-	public ContactDetails getContactDetails() {
-		return contactDetails;
-	}
-
-	public void setContactDetails(ContactDetails contactDetails) {
-		this.contactDetails = contactDetails;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 }

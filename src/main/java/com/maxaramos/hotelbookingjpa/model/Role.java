@@ -9,8 +9,11 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import lombok.Getter;
+
 @Entity
 @Table(name = "role")
+@Getter
 public class Role implements GrantedAuthority {
 
 	private static final long serialVersionUID = 7191207013807877084L;
@@ -22,14 +25,6 @@ public class Role implements GrantedAuthority {
 
 	@Column(name = "name")
 	private String name;
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
 
 	@Override
 	public String getAuthority() {

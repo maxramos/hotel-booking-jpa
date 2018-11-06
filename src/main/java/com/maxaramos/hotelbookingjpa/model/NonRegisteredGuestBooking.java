@@ -4,8 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @DiscriminatorValue("non_registered_guest_booking")
+@Getter
+@Setter
 public class NonRegisteredGuestBooking extends Booking {
 
 	private static final long serialVersionUID = 7139745070593743387L;
@@ -21,37 +26,5 @@ public class NonRegisteredGuestBooking extends Booking {
 
 	@Column(name = "mobile_number")
 	private String mobileNumber;
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
 
 }

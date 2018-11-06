@@ -5,8 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @DiscriminatorValue("registered_guest_booking")
+@Getter
+@Setter
 public class RegisteredGuestBooking extends Booking {
 
 	private static final long serialVersionUID = 1043714645007006025L;
@@ -14,13 +19,5 @@ public class RegisteredGuestBooking extends Booking {
 	@ManyToOne
 	@JoinColumn(name = "guest_user_id")
 	private User guest;
-
-	public User getGuest() {
-		return guest;
-	}
-
-	public void setGuest(User guest) {
-		this.guest = guest;
-	}
 
 }

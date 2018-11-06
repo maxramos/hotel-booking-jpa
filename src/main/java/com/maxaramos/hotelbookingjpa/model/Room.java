@@ -12,8 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "room")
+@Getter
+@Setter
 public class Room implements Serializable {
 
 	private static final long serialVersionUID = -4160169401583423335L;
@@ -35,41 +40,5 @@ public class Room implements Serializable {
 
 	@Column(name = "rate")
 	private BigDecimal rate;
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getRoomNumber() {
-		return roomNumber;
-	}
-
-	public void setRoomNumber(String roomNumber) {
-		this.roomNumber = roomNumber;
-	}
-
-	public Hotel getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	public BigDecimal getRate() {
-		return rate;
-	}
-
-	public void setRate(BigDecimal rate) {
-		this.rate = rate;
-	}
 
 }

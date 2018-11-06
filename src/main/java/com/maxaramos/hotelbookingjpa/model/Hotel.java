@@ -19,8 +19,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.maxaramos.hotelbookingjpa.jsonview.CollectionView;
 import com.maxaramos.hotelbookingjpa.jsonview.ItemView;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "hotel")
+@Getter
+@Setter
 public class Hotel implements Serializable {
 
 	private static final long serialVersionUID = -1798484086573139384L;
@@ -28,12 +33,15 @@ public class Hotel implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private Long id;
 
 	@Column(name = "name")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private String name;
 
 	@Column(name = "active")
+	@JsonView(ItemView.class)
 	private boolean active;
 
 	@OneToOne
@@ -50,51 +58,18 @@ public class Hotel implements Serializable {
 	private List<Room> rooms;
 
 	@Embedded
+	@JsonView(ItemView.class)
 	private ContactDetails contactDetails;
 
 	@Embedded
+	@JsonView(ItemView.class)
 	private Address address;
 
 	public static Hotel newInstance() {
 		Hotel hotel = new Hotel();
-		hotel.setContactDetails(new ContactDetails());
-		hotel.setAddress(new Address());
+		hotel.contactDetails = new ContactDetails();
+		hotel.address = new Address();
 		return hotel;
-	}
-
-	@JsonView({ CollectionView.class, ItemView.class })
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@JsonView({ CollectionView.class, ItemView.class })
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@JsonView(ItemView.class)
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	public User getManager() {
-		return manager;
-	}
-
-	public void setManager(User manager) {
-		this.manager = manager;
 	}
 
 	@JsonView({ CollectionView.class, ItemView.class })
@@ -104,40 +79,6 @@ public class Hotel implements Serializable {
 		}
 
 		return manager.getFullName();
-	}
-
-	public List<User> getReceptionists() {
-		return receptionists;
-	}
-
-	public void setReceptionists(List<User> receptionists) {
-		this.receptionists = receptionists;
-	}
-
-	public List<Room> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
-	}
-
-	@JsonView(ItemView.class)
-	public ContactDetails getContactDetails() {
-		return contactDetails;
-	}
-
-	public void setContactDetails(ContactDetails contactDetails) {
-		this.contactDetails = contactDetails;
-	}
-
-	@JsonView(ItemView.class)
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 }
