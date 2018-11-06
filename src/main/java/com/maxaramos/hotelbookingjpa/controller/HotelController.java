@@ -12,28 +12,46 @@ import com.maxaramos.hotelbookingjpa.model.Hotel;
 import com.maxaramos.hotelbookingjpa.service.HotelService;
 
 @Controller
-@RequestMapping("/hotel")
+@RequestMapping("/hotels")
 public class HotelController {
 
 	@Autowired
 	private HotelService hotelService;
 
-	@GetMapping("/list")
-	public String list(Model model) {
+	@GetMapping
+	public String findAll(Model model) {
 		model.addAttribute("hotels", hotelService.findAll());
 		return "/hotel/list";
 	}
 
-	@GetMapping("/{id}/details")
-	public String details(@PathVariable("id") Long id, Model model) {
+	@GetMapping("/{id}")
+	public String findById(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("hotel", hotelService.findById(id));
 		return "/hotel/details";
 	}
 
-	@PostMapping("/update")
-	public String update(Hotel hotel) {
-		hotelService.save(hotel);
-		return String.format("redirect:/hotel/%s/details", hotel.getId());
+	@GetMapping("/add")
+	public String showAdd(Model model) {
+		model.addAttribute("hotel", Hotel.newInstance());
+		return "/hotel/add";
+	}
+
+	@PostMapping
+	public String add(Hotel hotel) {
+		Hotel addedHotel = hotelService.add(hotel);
+		return "redirect:/hotels/" + addedHotel.getId();
+	}
+
+	@PostMapping("/{id}")
+	public String update(@PathVariable("id") Long id, Hotel hotel) {
+		hotelService.update(id, hotel);
+		return "redirect:/hotels/" + id;
+	}
+
+	@PostMapping("/{id}/delete")
+	public String deleteById(@PathVariable("id") Long id) {
+		hotelService.deleteById(id);
+		return "redirect:/hotels";
 	}
 
 }

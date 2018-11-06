@@ -8,7 +8,7 @@
 </head>
 <body>
 	<section>
-		<form th:action="@{/hotels/{id}(id=${hotel.id})}" th:object="${hotel}" method="post">
+		<form th:action="@{/hotels}" th:object="${hotel}" method="post">
 			<div>
 				<div>
 					<h5>Basic</h5>
@@ -17,10 +17,6 @@
 						<input type="text" th:field="*{name}" />
 						<div th:errors="*{name}"></div>
 					</div>
-					<div>
-						<label for="managerFullName">Manager</label>
-						<input type="text" th:field="*{managerFullName}" readonly />
-					</div >
 				</div>
 				<div>
 					<h5>Contact Details</h5>
@@ -79,9 +75,6 @@
 					<input type="submit" value="Save" />
 				</div>
 			</div>
-		</form>
-		<form th:action="@{/hotels/{id}/delete(id=${hotel.id})}" th:object="${hotel}" method="post">
-			<input type="submit" value="Delete" />
 		</form>
 	</section>
 </body>

@@ -1,5 +1,5 @@
 package com.maxaramos.hotelbookingjpa.jsonview;
 
-public interface ListView {
+public interface CollectionView {
 
 }

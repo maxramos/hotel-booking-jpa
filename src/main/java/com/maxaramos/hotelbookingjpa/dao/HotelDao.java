@@ -18,4 +18,6 @@ public interface HotelDao {
 
 	Hotel save(Hotel hotel);
 
+	void deleteById(Long id);
+
 }

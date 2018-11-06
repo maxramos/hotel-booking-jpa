@@ -24,8 +24,22 @@ public class HotelService {
 		return hotelDao.findById(id).orElse(null);
 	}
 
-	public Hotel save(Hotel hotel) {
+	public Hotel add(Hotel hotel) {
+		hotel.setId(null);
+		hotel.setActive(false);
 		return hotelDao.save(hotel);
+	}
+
+	public Hotel update(Long id, Hotel hotel) {
+		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
+		updatedHotel.setName(hotel.getName());
+		updatedHotel.setContactDetails(hotel.getContactDetails());
+		updatedHotel.setAddress(hotel.getAddress());
+		return hotelDao.save(updatedHotel);
+	}
+
+	public void deleteById(Long id) {
+		hotelDao.deleteById(id);
 	}
 
 }

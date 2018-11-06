@@ -80,7 +80,7 @@ public class WebSecurityConfig {
 				.authorizeRequests()
 					.requestMatchers(
 							new AntPathRequestMatcher("/api/hotels/{id}", HttpMethod.GET.toString()),
-							new AntPathRequestMatcher("/api/hotels", HttpMethod.PUT.toString()))
+							new AntPathRequestMatcher("/api/hotels/{id}", HttpMethod.PATCH.toString()))
 						.hasAnyRole("ADMIN", "MANAGER")
 					.antMatchers("/api/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
@@ -106,10 +106,10 @@ public class WebSecurityConfig {
 				.authorizeRequests()
 					.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
 					.requestMatchers(
-							new AntPathRequestMatcher("/hotel/{id}/details", HttpMethod.GET.toString()),
-							new AntPathRequestMatcher("/hotel/update", HttpMethod.POST.toString()))
+							new AntPathRequestMatcher("/hotels/{id}", HttpMethod.GET.toString()),
+							new AntPathRequestMatcher("/hotels/{id}", HttpMethod.POST.toString()))
 						.hasAnyRole("ADMIN", "MANAGER")
-					.antMatchers("/hotel/**").hasRole("ADMIN")
+					.antMatchers("/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.formLogin()
