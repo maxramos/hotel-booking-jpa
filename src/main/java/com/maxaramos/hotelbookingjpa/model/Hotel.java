@@ -1,7 +1,9 @@
 package com.maxaramos.hotelbookingjpa.model;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -14,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.util.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.maxaramos.hotelbookingjpa.jsonview.CollectionView;
@@ -41,7 +45,7 @@ public class Hotel implements Serializable {
 	private String name;
 
 	@Column(name = "active")
-	@JsonView(ItemView.class)
+	@JsonView({ CollectionView.class, ItemView.class })
 	private boolean active;
 
 	@OneToOne
@@ -72,13 +76,31 @@ public class Hotel implements Serializable {
 		return hotel;
 	}
 
-	@JsonView({ CollectionView.class, ItemView.class })
+	@JsonView(ItemView.class)
 	public String getManagerFullName() {
 		if (manager == null) {
 			return null;
 		}
 
 		return manager.getFullName();
+	}
+
+	@JsonView(ItemView.class)
+	public List<String> getReceptionistsFullNames() {
+		if (CollectionUtils.isEmpty(receptionists)) {
+			return Collections.emptyList();
+		}
+
+		return receptionists.stream().map(User::getFullName).collect(Collectors.toList());
+	}
+
+	@JsonView({ CollectionView.class, ItemView.class })
+	public int getRoomsCount() {
+		if (CollectionUtils.isEmpty(rooms)) {
+			return 0;
+		}
+
+		return rooms.size();
 	}
 
 }
