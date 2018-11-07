@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.www.DigestAuthenticationF
 import com.maxaramos.hotelbookingjpa.service.UserService;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
 	@Value("${app.security.realm-name}")
@@ -77,10 +78,10 @@ public class WebSecurityConfig {
 			http
 				.antMatcher("/api/**")
 				.authorizeRequests()
-					.antMatchers(HttpMethod.GET, "/api/hotels/{hotelId:\\d+}/rooms/**").hasAnyRole("ADMIN", "MANAGER", "RECEPTIONIST")
-					.antMatchers("/api/hotels/{hotelId:\\d+}/rooms/**").hasRole("MANAGER")
-					.antMatchers(HttpMethod.GET, "/api/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
-					.antMatchers("/api/hotels/**").hasRole("ADMIN")
+//					.antMatchers(HttpMethod.GET, "/api/hotels/{hotelId:\\d+}/rooms/**").hasAnyRole("ADMIN", "MANAGER", "RECEPTIONIST")
+//					.antMatchers("/api/hotels/{hotelId:\\d+}/rooms/**").hasRole("MANAGER")
+//					.antMatchers(HttpMethod.GET, "/api/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
+//					.antMatchers("/api/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.httpBasic()
@@ -103,10 +104,10 @@ public class WebSecurityConfig {
 			http
 				.authorizeRequests()
 					.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-					.antMatchers(HttpMethod.GET, "/hotels/{hotelId:\\d+}/rooms/**").hasAnyRole("ADMIN", "MANAGER", "RECEPTIONIST")
-					.antMatchers("/hotels/{hotelId:\\d+}/rooms/**").hasRole("MANAGER")
-					.antMatchers(HttpMethod.GET, "/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
-					.antMatchers("/hotels/**").hasRole("ADMIN")
+//					.antMatchers(HttpMethod.GET, "/hotels/{hotelId:\\d+}/rooms/**").hasAnyRole("ADMIN", "MANAGER", "RECEPTIONIST")
+//					.antMatchers("/hotels/{hotelId:\\d+}/rooms/**").hasRole("MANAGER")
+//					.antMatchers(HttpMethod.GET, "/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
+//					.antMatchers("/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.formLogin()

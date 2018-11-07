@@ -3,6 +3,7 @@ package com.maxaramos.hotelbookingjpa.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import com.maxaramos.hotelbookingjpa.model.Hotel;
 
 @Service
 @Transactional
+@PreAuthorize("hasRole('ADMIN')")
 public class HotelService {
 
 	@Autowired
@@ -20,6 +22,7 @@ public class HotelService {
 		return hotelDao.findAll();
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public Hotel findById(Long id) {
 		return hotelDao.findById(id).orElse(null);
 	}

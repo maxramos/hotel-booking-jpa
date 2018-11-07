@@ -3,6 +3,7 @@ package com.maxaramos.hotelbookingjpa.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import com.maxaramos.hotelbookingjpa.model.Room;
 
 @Service
 @Transactional
+@PreAuthorize("hasRole('MANAGER')")
 public class RoomService {
 
 	@Autowired
@@ -21,11 +23,13 @@ public class RoomService {
 	@Autowired
 	private HotelDao hotelDao;
 
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'RECEPTIONIST')")
 	public List<Room> findAllByHotelId(Long hotelId) {
 		Hotel hotel = hotelDao.findById(hotelId).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", hotelId)));
 		return roomDao.findAllByHotel(hotel);
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'RECEPTIONIST')")
 	public Room findByHotelIdAndRoomId(Long hotelId, Long roomId) {
 		Hotel hotel = hotelDao.findById(hotelId).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", hotelId)));
 		return roomDao.findByIdAndHotel(roomId, hotel).orElse(null);
