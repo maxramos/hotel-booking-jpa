@@ -41,7 +41,7 @@ public class HotelService {
 		return hotelDao.save(updatedHotel);
 	}
 
-	public void deleteById(Long id) {
+	public void delete(Long id) {
 		hotelDao.deleteById(id);
 	}
 

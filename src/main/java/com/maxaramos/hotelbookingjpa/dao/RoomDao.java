@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.repository.RepositoryDefinition;
 
+import com.maxaramos.hotelbookingjpa.model.Hotel;
 import com.maxaramos.hotelbookingjpa.model.Room;
 
 @RepositoryDefinition(
@@ -12,12 +13,12 @@ import com.maxaramos.hotelbookingjpa.model.Room;
 		idClass = Long.class)
 public interface RoomDao {
 
-	List<Room> findAll();
+	List<Room> findAllByHotel(Hotel hotel);
 
-	Optional<Room> findById(Long id);
+	Optional<Room> findByIdAndHotel(Long id, Hotel hotel);
 
 	Room save(Room room);
 
-	void deleteById(Long id);
+	void deleteByIdAndHotel(Long id, Hotel hotel);
 
 }

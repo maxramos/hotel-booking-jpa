@@ -3,6 +3,7 @@ package com.maxaramos.hotelbookingjpa.model;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.Column;
@@ -58,7 +59,7 @@ public class Hotel implements Serializable {
 	private List<User> receptionists;
 
 	@OneToMany(mappedBy = "hotel")
-	private List<Room> rooms;
+	private Set<Room> rooms;
 
 	@Column(name = "email")
 	@JsonView(ItemView.class)
@@ -110,6 +111,10 @@ public class Hotel implements Serializable {
 		}
 
 		return rooms.size();
+	}
+
+	public boolean addRoom(Room room) {
+		return rooms.add(room);
 	}
 
 }

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.maxaramos.hotelbookingjpa.jsonview.CollectionView;
 import com.maxaramos.hotelbookingjpa.jsonview.ItemView;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ import lombok.Setter;
 @Table(name = "room")
 @Getter
 @Setter
+@EqualsAndHashCode(of = "roomNumber")
 public class Room implements Serializable {
 
 	private static final long serialVersionUID = -4160169401583423335L;
@@ -48,14 +50,5 @@ public class Room implements Serializable {
 	@Column(name = "rate")
 	@JsonView({ CollectionView.class, ItemView.class })
 	private BigDecimal rate;
-
-	@JsonView({ CollectionView.class, ItemView.class })
-	public String getHotelName() {
-		if (hotel == null) {
-			return null;
-		}
-
-		return hotel.getName();
-	}
 
 }

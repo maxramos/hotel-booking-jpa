@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.maxaramos.hotelbookingjpa.jsonview.ItemView;
 import com.maxaramos.hotelbookingjpa.jsonview.CollectionView;
+import com.maxaramos.hotelbookingjpa.jsonview.ItemView;
 import com.maxaramos.hotelbookingjpa.model.Hotel;
 import com.maxaramos.hotelbookingjpa.service.HotelService;
 
@@ -50,8 +50,8 @@ public class HotelRestController {
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteById(@PathVariable("id") Long id) {
-		hotelService.deleteById(id);
+	public void delete(@PathVariable("id") Long id) {
+		hotelService.delete(id);
 	}
 
 }
