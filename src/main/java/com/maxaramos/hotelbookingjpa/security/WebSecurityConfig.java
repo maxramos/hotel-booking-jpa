@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.maxaramos.hotelbookingjpa.service.UserService;
 
@@ -78,10 +77,7 @@ public class WebSecurityConfig {
 			http
 				.antMatcher("/api/**")
 				.authorizeRequests()
-					.requestMatchers(
-							new AntPathRequestMatcher("/api/hotels/{id}", HttpMethod.GET.toString()),
-							new AntPathRequestMatcher("/api/hotels/{id}", HttpMethod.PATCH.toString()))
-						.hasAnyRole("ADMIN", "MANAGER")
+					.antMatchers(HttpMethod.GET, "/api/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
 					.antMatchers("/api/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
@@ -105,10 +101,7 @@ public class WebSecurityConfig {
 			http
 				.authorizeRequests()
 					.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-					.requestMatchers(
-							new AntPathRequestMatcher("/hotels/{id}", HttpMethod.GET.toString()),
-							new AntPathRequestMatcher("/hotels/{id}", HttpMethod.POST.toString()))
-						.hasAnyRole("ADMIN", "MANAGER")
+					.antMatchers(HttpMethod.GET, "/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
 					.antMatchers("/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
