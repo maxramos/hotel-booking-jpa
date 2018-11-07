@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +16,9 @@ import javax.persistence.Transient;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import com.maxaramos.hotelbookingjpa.jsonview.ItemView;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -53,11 +55,13 @@ public class User implements UserDetails {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Embedded
-	private ContactDetails contactDetails;
+	@Column(name = "email")
+	@JsonView(ItemView.class)
+	private String email;
 
-	@Embedded
-	private Address address;
+	@Column(name = "phone_number")
+	@JsonView(ItemView.class)
+	private String phoneNumber;
 
 	@Transient
 	private boolean accountNonLocked = true;

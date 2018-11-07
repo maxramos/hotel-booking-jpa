@@ -12,14 +12,7 @@ CREATE TABLE user (
 	first_name VARCHAR(20),
 	last_name VARCHAR(20),
 	email VARCHAR(30),
-	mobile_number VARCHAR(20),
-	landline VARCHAR(20),
-	address1 VARCHAR(100),
-	address2 VARCHAR(100),
-	city VARCHAR(20),
-	state VARCHAR(20),
-	country VARCHAR(20),
-	zip_code VARCHAR(10),
+	phone_number VARCHAR(20),
 	FOREIGN KEY(role_id) REFERENCES role(id)
 );
 
@@ -29,14 +22,10 @@ CREATE TABLE hotel (
 	active BOOLEAN NOT NULL,
 	manager_user_id BIGINT REFERENCES user(id),
 	email VARCHAR(30),
-	mobile_number VARCHAR(20),
-	landline VARCHAR(20),
-	address1 VARCHAR(100),
-	address2 VARCHAR(100),
+	phone_number VARCHAR(20),
 	city VARCHAR(20),
 	state VARCHAR(20),
-	country VARCHAR(20),
-	zip_code VARCHAR(10)
+	country VARCHAR(20)
 );
 
 CREATE TABLE hotel_receptionist (
@@ -65,6 +54,6 @@ CREATE TABLE booking (
 	first_name VARCHAR(20),
 	last_name VARCHAR(20),
 	email VARCHAR(30),
-	mobile_number VARCHAR(20),
+	phone_number VARCHAR(20),
 	FOREIGN KEY(room_id) REFERENCES room(id),
 );

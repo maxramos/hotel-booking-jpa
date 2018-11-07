@@ -32,22 +32,22 @@ INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name
 VALUES(7, 'ma.xara.mos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 3, TRUE, 'Hotel2', 'Receptionist2', 'ma.xara.mos@gmail.com');
 
 -- Guest
-INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, address1, city, state, country, zip_code)
-VALUES(8, 'max.ar.amos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest1', 'max.ar.amos@gmail.com', 'Rada St. Legazpi Village', 'Makati', 'Metro Manila', 'Philippines', '1229');
-INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, address1, city, state, country, zip_code)
-VALUES(9, 'max.ara.mos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest2', 'max.ara.mos@gmail.com', 'Dela Rosa St. Legazpi Village', 'Makati', 'Metro Manila', 'Philippines', '1229');
-INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, address1, city, state, country, zip_code)
-VALUES(10, 'max.aram.os', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest3', 'max.aram.os@gmail.com', 'Banahaw St. Calmar Homes', 'Lucena', 'Quezon', 'Philippines', '4301');
-INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, address1, city, state, country, zip_code)
-VALUES(11, 'max.aramo.s', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest4', 'max.aramo.s@gmail.com', 'Alvarez St. Alvarez Subd.', 'Pagbilao', 'Quezon', 'Philippines', '4301');
+INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, phone_number)
+VALUES(8, 'max.ar.amos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest1', 'max.ar.amos@gmail.com', '+639171111111');
+INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, phone_number)
+VALUES(9, 'max.ara.mos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest2', 'max.ara.mos@gmail.com', '+639172222222');
+INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, phone_number)
+VALUES(10, 'max.aram.os', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest3', 'max.aram.os@gmail.com', '+639173333333');
+INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, phone_number)
+VALUES(11, 'max.aramo.s', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest4', 'max.aramo.s@gmail.com', '+639173333333');
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- *** HOTEL ***
-INSERT INTO hotel(id, name, active, manager_user_id, email, mobile_number, landline, address1, city, state, country, zip_code)
-VALUES(1, 'Hotel1', TRUE, 2, 'm.axaramos@gmail.com', '+639171234567', '+63421234567', 'Ayala Ave.', 'Makati', 'Metro Manila', 'Philippines', '1229');
-INSERT INTO hotel(id, name, active, manager_user_id, email, mobile_number, landline, address1, city, state, country, zip_code)
-VALUES(2, 'Hotel2', TRUE, 3, 'ma.xaramos@gmail.com', '+639177654321', '+63427654321', 'Main Domoit', 'Lucena', 'Quezon', 'Philippines', '4301');
+INSERT INTO hotel(id, name, active, manager_user_id, email, phone_number, city, state, country)
+VALUES(1, 'Hotel1', TRUE, 2, 'm.axaramos@gmail.com', '+639171234567', 'Makati', 'Metro Manila', 'Philippines');
+INSERT INTO hotel(id, name, active, manager_user_id, email, phone_number, city, state, country)
+VALUES(2, 'Hotel2', TRUE, 3, 'ma.xaramos@gmail.com', '+639177654321', 'Lucena', 'Quezon', 'Philippines');
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

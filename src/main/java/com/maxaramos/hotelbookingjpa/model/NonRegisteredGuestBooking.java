@@ -24,7 +24,7 @@ public class NonRegisteredGuestBooking extends Booking {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "mobile_number")
-	private String mobileNumber;
+	@Column(name = "phone_number")
+	private String phoneNumber;
 
 }

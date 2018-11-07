@@ -33,8 +33,11 @@ public class HotelService {
 	public Hotel update(Long id, Hotel hotel) {
 		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
 		updatedHotel.setName(hotel.getName());
-		updatedHotel.setContactDetails(hotel.getContactDetails());
-		updatedHotel.setAddress(hotel.getAddress());
+		updatedHotel.setEmail(hotel.getEmail());
+		updatedHotel.setPhoneNumber(hotel.getPhoneNumber());
+		updatedHotel.setCity(hotel.getCity());
+		updatedHotel.setState(hotel.getState());
+		updatedHotel.setCountry(hotel.getCountry());
 		return hotelDao.save(updatedHotel);
 	}
 

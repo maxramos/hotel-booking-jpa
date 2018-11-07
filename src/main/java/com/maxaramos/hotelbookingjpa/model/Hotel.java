@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -61,18 +60,28 @@ public class Hotel implements Serializable {
 	@OneToMany(mappedBy = "hotel")
 	private List<Room> rooms;
 
-	@Embedded
+	@Column(name = "email")
 	@JsonView(ItemView.class)
-	private ContactDetails contactDetails;
+	private String email;
 
-	@Embedded
+	@Column(name = "phone_number")
 	@JsonView(ItemView.class)
-	private Address address;
+	private String phoneNumber;
+
+	@Column(name = "city")
+	@JsonView(ItemView.class)
+	private String city;
+
+	@Column(name = "state")
+	@JsonView(ItemView.class)
+	private String state;
+
+	@Column(name = "country")
+	@JsonView(ItemView.class)
+	private String country;
 
 	public static Hotel newInstance() {
 		Hotel hotel = new Hotel();
-		hotel.contactDetails = new ContactDetails();
-		hotel.address = new Address();
 		return hotel;
 	}
 
