@@ -27,8 +27,9 @@
 			</table>
 		</div>
 		<div>
-			<a th:href="@{/hotels/add}">Add</a>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
 		</div>
+		<div th:replace="hotel/fragments/add::addModal"></div>
 	</section>
 </body>
 </html>
