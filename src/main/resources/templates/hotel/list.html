@@ -15,6 +15,7 @@
 						<th>#</th>
 						<th>Name</th>
 						<th>Manager</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -22,14 +23,24 @@
 						<td th:text="${status.count}"></td>
 						<td th:text="${hotel.name}"></td>
 						<td th:text="${hotel.managerFullName}"></td>
+						<td>
+							<a class="btn btn-primary" th:href="@{/hotels/{id}(id=${hotel.id})}">Update</a>
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" 
+									th:onclick="'deleteHotel(' + ${hotel.id} + ')'">Delete</button>
+						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<div>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</button>
+			<a class="btn btn-primary" th:href="@{/hotels/add}">Add</a>
 		</div>
-		<div th:replace="hotel/fragments/add::addModal"></div>
+		<div th:replace="hotel/fragments/delete::deleteModal"></div>
+		<script>
+			function deleteHotel(id) {
+				$("#deleteForm").attr("action", "[[@{/hotels/}]]" + id + "/delete");
+			}
+		</script>
 	</section>
 </body>
 </html>
