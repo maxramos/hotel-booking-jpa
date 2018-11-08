@@ -9,18 +9,16 @@
 <body>
 	<section>
 		<div>
-			<table border="1">
+			<table class="table">
 				<thead>
 					<tr>
-						<th>#</th>
 						<th>Name</th>
 						<th>Manager</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="hotel,status : ${hotels}">
-						<td th:text="${status.count}"></td>
+					<tr th:each="hotel : ${hotels}">
 						<td th:text="${hotel.name}"></td>
 						<td th:text="${hotel.managerFullName}"></td>
 						<td>

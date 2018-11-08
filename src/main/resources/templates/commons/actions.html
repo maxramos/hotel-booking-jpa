@@ -4,7 +4,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 	<form th:fragment="logout" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" />
+		<button class="btn btn-secondary">Logout</button>
 	</form>
 </body>
 </html>

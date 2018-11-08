@@ -22,12 +22,12 @@
 					<h5>Contact Details</h5>
 					<div>
 						<label for="email">Email</label>
-						<input type="text" th:field="*{email}" />
+						<input type="email" th:field="*{email}" />
 						<div th:errors="*{email}"></div>
 					</div>
 					<div>
 						<label for="phoneNumber">Phone Number</label> 
-						<input type="text" th:field="*{phoneNumber}" />
+						<input type="tel" th:field="*{phoneNumber}" />
 						<div th:errors="*{phoneNumber}"></div>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 			</div>
 			<div>
 				<a class="btn btn-secondary" th:href="@{/hotels}">Cancel</a>
-				<button type="submit" class="btn btn-primary">Save</button>
+				<button class="btn btn-primary">Save</button>
 			</div>
 		</form>
 	</section>
