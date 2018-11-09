@@ -1,8 +1,8 @@
 -- *** ROLE ***
-INSERT INTO role(id, name) VALUES(1, 'ROLE_ADMIN');
-INSERT INTO role(id, name) VALUES(2, 'ROLE_MANAGER');
-INSERT INTO role(id, name) VALUES(3, 'ROLE_RECEPTIONIST');
-INSERT INTO role(id, name) VALUES(4, 'ROLE_GUEST');
+INSERT INTO role(id, name) VALUES(1, 'admin');
+INSERT INTO role(id, name) VALUES(2, 'manager');
+INSERT INTO role(id, name) VALUES(3, 'receptionist');
+INSERT INTO role(id, name) VALUES(4, 'guest');
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -10,18 +10,18 @@ INSERT INTO role(id, name) VALUES(4, 'ROLE_GUEST');
 -- Default Password: changeit
 -- Digest auth requires plain text password instead of encoded.
 
--- Admin
+-- admin
 INSERT INTO user(id, username, password, role_id, enabled, email)
 VALUES(1, 'maxaramos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 1, TRUE, 'maxaramos@gmail.com');
 --VALUES(1, 'maxaramos', 'changeit', 1, TRUE);
 
--- Manager
+-- manager
 INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email)
 VALUES(2, 'm.axa.ramos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 2, TRUE, 'Hotel1', 'Manager', 'm.axa.ramos@gmail.com');
 INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email)
 VALUES(3, 'ma.xa.ramos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 2, TRUE, 'Hotel2', 'Manager', 'ma.xa.ramos@gmail.com');
 
--- Receptionist
+-- receptionist
 INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email)
 VALUES(4, 'm.axar.amos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 3, TRUE, 'Hotel1', 'Receptionist1', 'm.axar.amos@gmail.com');
 INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email)
@@ -31,7 +31,7 @@ VALUES(6, 'ma.xar.amos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJ
 INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email)
 VALUES(7, 'ma.xara.mos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 3, TRUE, 'Hotel2', 'Receptionist2', 'ma.xara.mos@gmail.com');
 
--- Guest
+-- guest
 INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, phone_number)
 VALUES(8, 'max.ar.amos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 4, TRUE, 'Registered', 'Guest1', 'max.ar.amos@gmail.com', '+639171111111');
 INSERT INTO user(id, username, password, role_id, enabled, first_name, last_name, email, phone_number)
