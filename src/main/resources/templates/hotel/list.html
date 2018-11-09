@@ -23,7 +23,7 @@
 						<td th:text="${hotel.managerFullName}"></td>
 						<td>
 							<a class="btn btn-primary" th:href="@{/hotels/{id}(id=${hotel.id})}">Update</a>
-							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" 
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
 									th:onclick="'deleteHotel(' + ${hotel.id} + ')'">Delete</button>
 						</td>
 					</tr>
@@ -33,11 +33,27 @@
 		<div>
 			<a class="btn btn-primary" th:href="@{/hotels/add}">Add</a>
 		</div>
+		<div th:if="${not #strings.isEmpty(successMessage)}" class="alert alert-success alert-dismissible fixed-top">
+			<div class="text-center font-weight-bold" th:text="${successMessage}"></div>
+			<button type="button" class="close" data-dismiss="alert">
+				<span>&times;</span>
+			</button>
+		</div>
 		<div th:replace="hotel/fragments/delete::deleteModal"></div>
 		<script>
 			function deleteHotel(id) {
 				$("#deleteForm").attr("action", "[[@{/hotels/}]]" + id + "/delete");
-			}
+			}			
+
+			$(document).ready(function() {
+				if ($(".alert").length) {					
+					window.setTimeout(function() {
+						$(".alert").slideUp("slow", function() {							
+							$(".alert").alert("close");
+						});
+					}, 3000);
+				}
+			});
 		</script>
 	</section>
 </body>

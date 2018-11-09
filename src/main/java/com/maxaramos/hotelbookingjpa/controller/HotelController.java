@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.maxaramos.hotelbookingjpa.model.Hotel;
 import com.maxaramos.hotelbookingjpa.service.HotelService;
@@ -37,20 +38,23 @@ public class HotelController {
 	}
 
 	@PostMapping
-	public String add(Hotel hotel) {
+	public String add(Hotel hotel, RedirectAttributes redirectAttributes) {
 		hotelService.add(hotel);
+		redirectAttributes.addFlashAttribute("successMessage", "Hotel added.");
 		return "redirect:/hotels";
 	}
 
 	@PostMapping("/{id}")
-	public String update(@PathVariable("id") Long id, Hotel hotel) {
+	public String update(@PathVariable("id") Long id, Hotel hotel, RedirectAttributes redirectAttributes) {
 		hotelService.update(id, hotel);
+		redirectAttributes.addFlashAttribute("successMessage", "Hotel updated.");
 		return "redirect:/hotels";
 	}
 
 	@PostMapping("/{id}/delete")
-	public String delete(@PathVariable("id") Long id) {
+	public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		hotelService.delete(id);
+		redirectAttributes.addFlashAttribute("successMessage", "Hotel deleted.");
 		return "redirect:/hotels";
 	}
 
