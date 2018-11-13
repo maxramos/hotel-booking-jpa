@@ -8,9 +8,19 @@
 </head>
 <body>
 	<section>
-		<div>
-			<table class="table">
-				<thead>
+		<form>
+			<div class="form-row d-flex justify-content-end mt-2">
+				<div class="col-auto">
+					<input type="text" id="search" class="form-control" />
+				</div>
+				<div class="col-auto">
+					<button type="button" class="btn btn-primary  mr-3">Search</button>
+				</div>
+			</div>
+		</form>
+		<div class="table-responsive">
+			<table class="table table-hover mt-2">
+				<thead class="thead-light">
 					<tr>
 						<th>Name</th>
 						<th>Manager</th>
@@ -30,8 +40,8 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="text-center">
-			<a class="btn btn-primary" th:href="@{/hotels/add}">Add</a>
+		<div class="d-flex justify-content-end">
+			<a class="btn btn-primary mr-3" th:href="@{/hotels/add}">Add</a>
 		</div>
 		<div th:if="${not #strings.isEmpty(successMessage)}" class="alert alert-success alert-dismissible fixed-top">
 			<div class="text-center font-weight-bold" th:text="${successMessage}"></div>
@@ -43,17 +53,7 @@
 		<script>
 			function deleteHotel(id) {
 				$("#deleteForm").attr("action", "[[@{/hotels/}]]" + id + "/delete");
-			}			
-
-			$(document).ready(function() {
-				if ($(".alert").length) {					
-					window.setTimeout(function() {
-						$(".alert").slideUp("slow", function() {							
-							$(".alert").alert("close");
-						});
-					}, 3000);
-				}
-			});
+			}
 		</script>
 	</section>
 </body>
