@@ -1,8 +1,12 @@
 package com.maxaramos.hotelbookingjpa.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +29,22 @@ public class HotelService {
 	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public Hotel findById(Long id) {
 		return hotelDao.findById(id).orElse(null);
+	}
+
+	public List<Hotel> findByNameOrAddress(String searchParam) {
+		Hotel hotel = new Hotel();
+		hotel.setName(searchParam);
+		hotel.setCity(searchParam);
+		hotel.setState(searchParam);
+		hotel.setCountry(searchParam);
+
+		ExampleMatcher matcher = ExampleMatcher.matchingAny()
+				.withIgnoreCase()
+				.withStringMatcher(StringMatcher.CONTAINING);
+
+		List<Hotel> results = new ArrayList<>();
+		hotelDao.findAll(Example.of(hotel, matcher)).forEach(results::add);
+		return results;
 	}
 
 	public Hotel add(Hotel hotel) {

@@ -46,7 +46,7 @@ public class Hotel implements Serializable {
 
 	@Column(name = "active")
 	@JsonView({ CollectionView.class, ItemView.class })
-	private boolean active;
+	private Boolean active;
 
 	@OneToOne
 	@JoinColumn(name = "manager_user_id")
@@ -70,15 +70,15 @@ public class Hotel implements Serializable {
 	private String phoneNumber;
 
 	@Column(name = "city")
-	@JsonView(ItemView.class)
+	@JsonView({ CollectionView.class, ItemView.class })
 	private String city;
 
 	@Column(name = "state")
-	@JsonView(ItemView.class)
+	@JsonView({ CollectionView.class, ItemView.class })
 	private String state;
 
 	@Column(name = "country")
-	@JsonView(ItemView.class)
+	@JsonView({ CollectionView.class, ItemView.class })
 	private String country;
 
 	public static Hotel newInstance() {
