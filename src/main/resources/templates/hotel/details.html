@@ -49,6 +49,14 @@
 					<div th:errors="*{country}"></div>
 				</div>
 			</div>
+			<div class="form-group col-auto form-check form-check-inline">
+				<label for="enabled" class="form-check-label mr-1">Enabled</label>
+				<input type="checkbox" class="form-check-input" th:field="*{enabled}" />
+			</div>
+			<div class="form-group col-auto form-check form-check-inline">
+				<label for="active" class="form-check-label mr-1">Active</label>
+				<input type="checkbox" class="form-check-input" th:field="*{active}" />
+			</div>
 			<div class="form-row">
 				<div class="form-group col-auto">
 					<button type="submit" class="btn btn-primary">Save</button>

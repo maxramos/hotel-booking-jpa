@@ -44,6 +44,10 @@ public class Hotel implements Serializable {
 	@JsonView({ CollectionView.class, ItemView.class })
 	private String name;
 
+	@Column(name = "enabled")
+	@JsonView({ CollectionView.class, ItemView.class })
+	private Boolean enabled;
+
 	@Column(name = "active")
 	@JsonView({ CollectionView.class, ItemView.class })
 	private Boolean active;

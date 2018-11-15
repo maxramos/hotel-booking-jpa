@@ -44,10 +44,10 @@ VALUES(11, 'max.aramo.s', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzA
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- *** HOTEL ***
-INSERT INTO hotel(id, name, active, manager_user_id, email, phone_number, city, state, country)
-VALUES(1, 'Hotel1', TRUE, 2, 'm.axaramos@gmail.com', '+639171234567', 'Makati', 'Metro Manila', 'Philippines');
-INSERT INTO hotel(id, name, active, manager_user_id, email, phone_number, city, state, country)
-VALUES(2, 'Hotel2', TRUE, 3, 'ma.xaramos@gmail.com', '+639177654321', 'Lucena', 'Quezon', 'Philippines');
+INSERT INTO hotel(id, name, enabled, active, manager_user_id, email, phone_number, city, state, country)
+VALUES(1, 'Hotel1', TRUE, TRUE, 2, 'm.axaramos@gmail.com', '+639171234567', 'Makati', 'Metro Manila', 'Philippines');
+INSERT INTO hotel(id, name, enabled, active, manager_user_id, email, phone_number, city, state, country)
+VALUES(2, 'Hotel2', TRUE, TRUE, 3, 'ma.xaramos@gmail.com', '+639177654321', 'Lucena', 'Quezon', 'Philippines');
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
