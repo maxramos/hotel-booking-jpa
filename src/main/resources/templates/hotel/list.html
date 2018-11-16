@@ -51,7 +51,7 @@
 				<span>&times;</span>
 			</button>
 		</div>
-		<div th:replace="hotel/fragments/delete::deleteModal"></div>
+		<div th:replace="hotel/fragments/modals::deleteModal"></div>
 		<script>
 			function deleteHotel(id) {
 				$("#deleteForm").attr("action", "[[@{/hotels/}]]" + id + "/delete");

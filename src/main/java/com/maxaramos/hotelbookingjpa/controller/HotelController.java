@@ -55,7 +55,35 @@ public class HotelController {
 	public String update(@PathVariable("id") Long id, Hotel hotel, RedirectAttributes redirectAttributes) {
 		hotelService.update(id, hotel);
 		redirectAttributes.addFlashAttribute("successMessage", "Hotel updated.");
-		return "redirect:/hotels";
+		return "redirect:/hotels/" + id;
+	}
+
+	@PostMapping("/{id}/enable")
+	public String enable(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+		hotelService.enable(id);
+		redirectAttributes.addFlashAttribute("successMessage", "Hotel enabled.");
+		return "redirect:/hotels/" + id;
+	}
+
+	@PostMapping("/{id}/disable")
+	public String disable(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+		hotelService.disable(id);
+		redirectAttributes.addFlashAttribute("successMessage", "Hotel disabled.");
+		return "redirect:/hotels/" + id;
+	}
+
+	@PostMapping("/{id}/activate")
+	public String activate(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+		hotelService.activate(id);
+		redirectAttributes.addFlashAttribute("successMessage", "Hotel activated.");
+		return "redirect:/hotels/" + id;
+	}
+
+	@PostMapping("/{id}/deactivate")
+	public String deactivate(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+		hotelService.deactivate(id);
+		redirectAttributes.addFlashAttribute("successMessage", "Hotel deactivated.");
+		return "redirect:/hotels/" + id;
 	}
 
 	@PostMapping("/{id}/delete")

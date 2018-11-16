@@ -66,6 +66,30 @@ public class HotelService {
 		return hotelDao.save(updatedHotel);
 	}
 
+	public Hotel enable(Long id) {
+		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
+		updatedHotel.setEnabled(true);
+		return hotelDao.save(updatedHotel);
+	}
+
+	public Hotel disable(Long id) {
+		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
+		updatedHotel.setEnabled(false);
+		return hotelDao.save(updatedHotel);
+	}
+
+	public Hotel activate(Long id) {
+		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
+		updatedHotel.setActive(true);
+		return hotelDao.save(updatedHotel);
+	}
+
+	public Hotel deactivate(Long id) {
+		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
+		updatedHotel.setActive(false);
+		return hotelDao.save(updatedHotel);
+	}
+
 	public void delete(Long id) {
 		hotelDao.deleteById(id);
 	}
