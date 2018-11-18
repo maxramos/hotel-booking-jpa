@@ -78,10 +78,6 @@ public class WebSecurityConfig {
 			http
 				.antMatcher("/api/**")
 				.authorizeRequests()
-//					.antMatchers(HttpMethod.GET, "/api/hotels/{hotelId:\\d+}/rooms/**").hasAnyRole("ADMIN", "MANAGER", "RECEPTIONIST")
-//					.antMatchers("/api/hotels/{hotelId:\\d+}/rooms/**").hasRole("MANAGER")
-//					.antMatchers(HttpMethod.GET, "/api/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
-//					.antMatchers("/api/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.httpBasic()
@@ -104,10 +100,6 @@ public class WebSecurityConfig {
 			http
 				.authorizeRequests()
 					.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-//					.antMatchers(HttpMethod.GET, "/hotels/{hotelId:\\d+}/rooms/**").hasAnyRole("ADMIN", "MANAGER", "RECEPTIONIST")
-//					.antMatchers("/hotels/{hotelId:\\d+}/rooms/**").hasRole("MANAGER")
-//					.antMatchers(HttpMethod.GET, "/hotels/{id:\\d+}").hasAnyRole("ADMIN", "MANAGER")
-//					.antMatchers("/hotels/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 				.formLogin()

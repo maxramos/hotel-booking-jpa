@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.maxaramos.hotelbookingjpa.jsonview.CollectionView;
@@ -37,6 +39,11 @@ public class HotelRestController {
 		return hotelService.findById(id);
 	}
 
+	@GetMapping("/search/byNameOrAddress")
+	public List<Hotel> findByNameOrAddress(@RequestParam("searchParam") String searchParam) {
+		return hotelService.findByNameOrAddress(searchParam);
+	}
+
 	@PostMapping
 	@JsonView(ItemView.class)
 	public Hotel add(@RequestBody Hotel hotel) {
@@ -47,6 +54,26 @@ public class HotelRestController {
 	@JsonView(ItemView.class)
 	public Hotel update(@PathVariable("id") Long id, @RequestBody Hotel hotel) {
 		return hotelService.update(id, hotel);
+	}
+
+	@PatchMapping("/{id}/enable")
+	public void enable(@PathVariable("id") Long id) {
+		hotelService.enable(id);
+	}
+
+	@PatchMapping("/{id}/disable")
+	public void disable(@PathVariable("id") Long id) {
+		hotelService.disable(id);
+	}
+
+	@PatchMapping("/{id}/activate")
+	public void activate(@PathVariable("id") Long id) {
+		hotelService.activate(id);
+	}
+
+	@PatchMapping("/{id}/deactivate")
+	public void deactivate(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+		hotelService.deactivate(id);
 	}
 
 	@DeleteMapping("/{id}")
