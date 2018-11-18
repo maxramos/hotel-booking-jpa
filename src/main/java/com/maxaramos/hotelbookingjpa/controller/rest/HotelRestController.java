@@ -40,6 +40,7 @@ public class HotelRestController {
 	}
 
 	@GetMapping("/search/byNameOrAddress")
+	@JsonView(CollectionView.class)
 	public List<Hotel> findByNameOrAddress(@RequestParam("searchParam") String searchParam) {
 		return hotelService.findByNameOrAddress(searchParam);
 	}
