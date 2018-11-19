@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.maxaramos.hotelbookingjpa.jsonview.CollectionView;
 import com.maxaramos.hotelbookingjpa.jsonview.ItemView;
 
 import lombok.Getter;
@@ -34,9 +35,11 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private Long id;
 
 	@Column(name = "username")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private String username;
 
 	@Column(name = "password")
@@ -44,15 +47,19 @@ public class User implements UserDetails {
 
 	@ManyToOne
 	@JoinColumn(name = "role_id")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private Role role;
 
 	@Column(name = "enabled")
+	@JsonView({ CollectionView.class, ItemView.class })
 	private boolean enabled;
 
 	@Column(name = "first_name")
+	@JsonView(ItemView.class)
 	private String firstName;
 
 	@Column(name = "last_name")
+	@JsonView(ItemView.class)
 	private String lastName;
 
 	@Column(name = "email")
@@ -77,6 +84,7 @@ public class User implements UserDetails {
 		return Collections.singleton(role);
 	}
 
+	@JsonView(CollectionView.class)
 	public String getFullName() {
 		if (StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName)) {
 			return null;

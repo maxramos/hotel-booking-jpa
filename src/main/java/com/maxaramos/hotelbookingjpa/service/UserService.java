@@ -1,9 +1,14 @@
 package com.maxaramos.hotelbookingjpa.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,6 +35,29 @@ public class UserService implements UserDetailsService {
 		User user = userDao.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username: " + username));
 		log.debug(user.toString());
 		return user;
+	}
+
+	public List<User> findAll() {
+		return userDao.findAll();
+	}
+
+	public List<User> findByUsernameOrNameOrEmail(String searchParam) {
+		User user = new User();
+		user.setUsername(searchParam);
+		user.setFirstName(searchParam);
+		user.setLastName(searchParam);
+		user.setEmail(searchParam);
+
+		ExampleMatcher matcher = ExampleMatcher.matchingAny()
+				.withIgnoreCase()
+				.withMatcher("username", match -> match.startsWith())
+				.withMatcher("firstName", match -> match.contains())
+				.withMatcher("lastName", match -> match.contains())
+				.withMatcher("email", match -> match.startsWith());
+
+		List<User> results = new ArrayList<>();
+		userDao.findAll(Example.of(user, matcher)).forEach(results::add);
+		return results;
 	}
 
 }

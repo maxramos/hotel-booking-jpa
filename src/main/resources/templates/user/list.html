@@ -4,14 +4,14 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-	<title>Hotel</title>
+	<title>User</title>
 </head>
 <body>
 	<section>
-		<form th:action="@{/hotels/search/byNameOrAddress}" method="get">
+		<form th:action="@{/users/search/byUsernameOrNameOrEmail}" method="get">
 			<div class="form-row d-flex justify-content-end mt-2">
 				<div class="col-auto">
-					<input type="text" id="searchParam" name="searchParam" class="form-control" placeholder="Name or Address" />
+					<input type="text" id="searchParam" name="searchParam" class="form-control" />
 				</div>	
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary  mr-3">Search</button>
@@ -23,32 +23,31 @@
 				<thead class="thead-light">
 					<tr>
 						<th>ID</th>
+						<th>Username</th>
 						<th>Name</th>
-						<th>Address</th>
-						<th>Rooms</th>
+						<th>Role</th>
 						<th>Enabled?</th>
-						<th>Active?</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="hotel : ${hotels}">
-						<td th:text="${hotel.id}"></td>
-						<td th:text="${hotel.name}"></td>
-						<td th:text="${hotel.address}"></td>
-						<td th:text="${hotel.roomsCount}"></td>
-						<td th:text="${hotel.enabled ? 'Yes' : 'No'}"></td>
-						<td th:text="${hotel.active ? 'Yes' : 'No'}">
-							<a class="btn btn-primary" th:href="@{/hotels/{id}(id=${hotel.id})}">Update</a>
+					<tr th:each="user : ${users}">
+						<td th:text="${user.id}"></td>
+						<td th:text="${user.username}"></td>
+						<td th:text="${user.fullName}"></td>
+						<td th:text="${user.role.name}"></td>
+						<td th:text="${user.enabled ? 'Yes' : 'No'}"></td>
+						<td>
+							<a class="btn btn-primary" th:href="@{/users/{id}(id=${user.id})}">Update</a>
 							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-									th:onclick="'deleteHotel(' + ${hotel.id} + ')'">Delete</button>
+									th:onclick="'deleteUser(' + ${user.id} + ')'">Delete</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<div class="d-flex justify-content-end">
-			<a class="btn btn-primary mr-3" th:href="@{/hotels/add}">Add</a>
+			<a class="btn btn-primary mr-3" th:href="@{/users/add}">Add</a>
 		</div>
 		<div th:if="${not #strings.isEmpty(successMessage)}" class="alert alert-success alert-dismissible fixed-top">
 			<div class="text-center font-weight-bold" th:text="${successMessage}"></div>
@@ -56,10 +55,10 @@
 				<span>&times;</span>
 			</button>
 		</div>
-		<div th:replace="hotel/fragments/modals::deleteModal"></div>
+		<div th:replace="user/fragments/modals::deleteModal"></div>
 		<script>
-			function deleteHotel(id) {
-				$("#deleteForm").attr("action", "[[@{/hotels/}]]" + id + "/delete");
+			function deleteUser(id) {
+				$("#deleteForm").attr("action", "[[@{/users/}]]" + id + "/delete");
 			}
 		</script>
 	</section>

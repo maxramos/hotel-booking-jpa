@@ -74,20 +74,24 @@ public class Hotel implements Serializable {
 	private String phoneNumber;
 
 	@Column(name = "city")
-	@JsonView({ CollectionView.class, ItemView.class })
+	@JsonView(ItemView.class)
 	private String city;
 
 	@Column(name = "state")
-	@JsonView({ CollectionView.class, ItemView.class })
+	@JsonView(ItemView.class)
 	private String state;
 
 	@Column(name = "country")
-	@JsonView({ CollectionView.class, ItemView.class })
+	@JsonView(ItemView.class)
 	private String country;
 
 	public static Hotel newInstance() {
 		Hotel hotel = new Hotel();
 		return hotel;
+	}
+
+	public boolean addRoom(Room room) {
+		return rooms.add(room);
 	}
 
 	@JsonView(ItemView.class)
@@ -117,8 +121,17 @@ public class Hotel implements Serializable {
 		return rooms.size();
 	}
 
-	public boolean addRoom(Room room) {
-		return rooms.add(room);
+	@JsonView(CollectionView.class)
+	public String getAddress() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(city);
+
+		if (state != null) {
+			builder.append(", " + state);
+		}
+
+		builder.append(", " + country);
+		return builder.toString();
 	}
 
 }

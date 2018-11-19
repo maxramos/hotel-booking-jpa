@@ -12,10 +12,16 @@
 			<h3>Profile</h3>
 			<div class="form-row">
 				<div class="form-group col-auto">
+					<label for="id">ID</label>
+					<input type="text" class="form-control" th:field="*{id}" size="1" readonly />
+				</div>
+				<div class="form-group col-auto">
 					<label for="name">Name</label>
 					<input type="text" class="form-control" th:field="*{name}" />
 					<div th:errors="*{name}"></div>
 				</div>
+			</div>
+			<div class="form-row">
 				<div class="form-group col-auto">
 					<label for="email">Email</label>
 					<input type="email" class="form-control" th:field="*{email}" />
@@ -44,13 +50,16 @@
 					<div th:errors="*{country}"></div>
 				</div>
 			</div>
-			<div class="form-group col-auto form-check form-check-inline">
-				<label for="enabled" class="form-check-label mr-1">Enabled</label>
-				<input type="checkbox" class="form-check-input" th:field="*{enabled}" />
-			</div>
-			<div class="form-group col-auto form-check form-check-inline">
-				<label for="active" class="form-check-label mr-1">Active</label>
-				<input type="checkbox" class="form-check-input" th:field="*{active}" />
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="roomsCount">Rooms</label>
+					<div class="input-group">
+						<input type="text" class="form-control" th:field="*{roomsCount}" size="1" readonly />
+						<div class="input-group-append">
+							<a class="btn btn-primary" th:href="@{/hotels/{hotelId}/rooms(hotelId=${hotel.id})}">View</a>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-auto">
@@ -60,12 +69,12 @@
 			</div>
 		</form>
 		<div>
-			<h3>Management</h3>
+			<h3>Controls</h3>
 			<div class="form-row">
 				<div class="form-group col-auto">
 					<label for="enableStatus">Enabled?</label>
 					<div class="input-group">
-						<input type="text" id="enableStatus" class="form-control" th:value="${hotel.enabled ? 'Yes' : 'No'}" size="1" readonly="readonly" />
+						<input type="text" id="enableStatus" class="form-control" th:value="${hotel.enabled ? 'Yes' : 'No'}" size="1" readonly />
 						<div class="input-group-append">
 							<button th:if="${not hotel.enabled}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#enableModal"
 											th:onclick="'enableHotel(' + ${hotel.id} + ')'">Enable</button>
@@ -74,10 +83,12 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="form-row">
 				<div class="form-group col-auto">
 					<label for="activeStatus">Active?</label>
 					<div class="input-group">
-						<input type="text" id="avtiveStatus" class="form-control" th:value="${hotel.active ? 'Yes' : 'No'}" size="1" readonly="readonly" />
+						<input type="text" id="avtiveStatus" class="form-control" th:value="${hotel.active ? 'Yes' : 'No'}" size="1" readonly />
 						<div class="input-group-append">
 							<button th:if="${not hotel.active}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#activateModal"
 											th:onclick="'activateHotel(' + ${hotel.id} + ')'">Activate</button>
@@ -87,6 +98,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div>
+			<h3>Personnel</h3>
 			<div class="form-row">
 				<div class="form-group col-auto">
 					<label for="managerFullName">Manager</label>
