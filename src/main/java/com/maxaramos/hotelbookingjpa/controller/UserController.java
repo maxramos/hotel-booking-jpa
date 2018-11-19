@@ -23,8 +23,8 @@ public class UserController {
 	}
 
 	@GetMapping("/search/byUsernameOrNameOrEmail")
-	public String findByUsernameOrNameOrEmail(@RequestParam("searchParam") String searchParam, Model model) {
-		model.addAttribute("hotels", userService.findByUsernameOrNameOrEmail(searchParam));
+	public String findByUsernameOrName(@RequestParam("searchParam") String searchParam, Model model) {
+		model.addAttribute("hotels", userService.findByUsernameOrName(searchParam));
 		return "/hotel/list";
 	}
 

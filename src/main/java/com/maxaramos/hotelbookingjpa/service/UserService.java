@@ -41,19 +41,17 @@ public class UserService implements UserDetailsService {
 		return userDao.findAll();
 	}
 
-	public List<User> findByUsernameOrNameOrEmail(String searchParam) {
+	public List<User> findByUsernameOrName(String searchParam) {
 		User user = new User();
 		user.setUsername(searchParam);
 		user.setFirstName(searchParam);
 		user.setLastName(searchParam);
-		user.setEmail(searchParam);
 
 		ExampleMatcher matcher = ExampleMatcher.matchingAny()
 				.withIgnoreCase()
 				.withMatcher("username", match -> match.startsWith())
 				.withMatcher("firstName", match -> match.contains())
-				.withMatcher("lastName", match -> match.contains())
-				.withMatcher("email", match -> match.startsWith());
+				.withMatcher("lastName", match -> match.contains());
 
 		List<User> results = new ArrayList<>();
 		userDao.findAll(Example.of(user, matcher)).forEach(results::add);
