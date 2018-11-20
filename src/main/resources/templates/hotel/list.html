@@ -38,7 +38,8 @@
 						<td th:text="${hotel.address}"></td>
 						<td th:text="${hotel.roomsCount}"></td>
 						<td th:text="${hotel.enabled ? 'Yes' : 'No'}"></td>
-						<td th:text="${hotel.active ? 'Yes' : 'No'}">
+						<td th:text="${hotel.active ? 'Yes' : 'No'}"></td>
+						<td>
 							<a class="btn btn-primary" th:href="@{/hotels/{id}(id=${hotel.id})}">Update</a>
 							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
 									th:onclick="'deleteHotel(' + ${hotel.id} + ')'">Delete</button>
