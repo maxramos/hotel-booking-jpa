@@ -11,8 +11,8 @@ INSERT INTO role(id, name) VALUES(4, 'guest');
 -- Digest auth requires plain text password instead of encoded.
 
 -- admin
-INSERT INTO user(id, username, password, role_id, enabled, email)
-VALUES(1, 'maxaramos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 1, TRUE, 'maxaramos@gmail.com');
+INSERT INTO user(id, username, password, role_id, enabled, first_name, email)
+VALUES(1, 'maxaramos', '$2a$10$wTrJXHGYS31v1jSVUdACoelFSHA.g13eBA.wjQnkb56rzAJPUlW8y', 1, TRUE, 'Administrator', 'maxaramos@gmail.com');
 --VALUES(1, 'maxaramos', 'changeit', 1, TRUE);
 
 -- manager

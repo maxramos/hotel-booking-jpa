@@ -18,14 +18,14 @@ public class UserController {
 
 	@GetMapping
 	public String findAll(Model model) {
-		model.addAttribute("hotels", userService.findAll());
+		model.addAttribute("users", userService.findAll());
 		return "/user/list";
 	}
 
-	@GetMapping("/search/byUsernameOrNameOrEmail")
+	@GetMapping("/search/byUsernameOrName")
 	public String findByUsernameOrName(@RequestParam("searchParam") String searchParam, Model model) {
-		model.addAttribute("hotels", userService.findByUsernameOrName(searchParam));
-		return "/hotel/list";
+		model.addAttribute("users", userService.findByUsernameOrName(searchParam));
+		return "/user/list";
 	}
 
 }
