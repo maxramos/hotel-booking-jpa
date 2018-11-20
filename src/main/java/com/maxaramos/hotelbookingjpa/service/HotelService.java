@@ -49,6 +49,7 @@ public class HotelService {
 
 	public Hotel add(Hotel hotel) {
 		hotel.setId(null);
+		hotel.setEnabled(false);
 		hotel.setActive(false);
 		return hotelDao.save(hotel);
 	}
