@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
 
-import com.maxaramos.hotelbookingjpa.service.UserService;
+import com.maxaramos.hotelbookingjpa.service.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -53,7 +53,7 @@ public class WebSecurityConfig {
 	}
 
 	@Bean
-	public DigestAuthenticationFilter digestAuthenticationFilter(UserService userService) {
+	public DigestAuthenticationFilter digestAuthenticationFilter(UserDetailsServiceImpl userService) {
 		DigestAuthenticationFilter filter = new DigestAuthenticationFilter();
 		filter.setAuthenticationEntryPoint(digestAuthenticationEntryPoint());
 		filter.setUserDetailsService(userService);
