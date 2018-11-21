@@ -37,7 +37,7 @@ public class HotelRoomRestController {
 		return roomService.findByHotelIdAndRoomId(hotelId, roomId);
 	}
 
-	@PostMapping
+	@PostMapping("/add")
 	@JsonView(ItemView.class)
 	public Room add(@PathVariable("hotelId") Long hotelId, @RequestBody Room room) {
 		return roomService.add(hotelId, room);

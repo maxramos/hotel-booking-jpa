@@ -26,7 +26,6 @@ public class HotelService {
 		return hotelDao.findAll();
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public Hotel findById(Long id) {
 		return hotelDao.findById(id).orElse(null);
 	}
@@ -77,14 +76,12 @@ public class HotelService {
 		return hotelDao.save(updatedHotel);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public Hotel activate(Long id) {
 		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
 		updatedHotel.setActive(true);
 		return hotelDao.save(updatedHotel);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public Hotel deactivate(Long id) {
 		Hotel updatedHotel = hotelDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Hotel [id=%s] not found.", id)));
 		updatedHotel.setActive(false);

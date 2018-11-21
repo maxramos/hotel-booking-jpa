@@ -38,13 +38,13 @@ public class HotelController {
 		return "/hotel/list";
 	}
 
-	@GetMapping("add")
+	@GetMapping("/add")
 	public String showAdd(Model model) {
 		model.addAttribute("hotel", Hotel.newInstance());
 		return "/hotel/add";
 	}
 
-	@PostMapping
+	@PostMapping("/add")
 	public String add(Hotel hotel, RedirectAttributes redirectAttributes) {
 		hotelService.add(hotel);
 		redirectAttributes.addFlashAttribute("successMessage", "Hotel added.");

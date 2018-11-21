@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html th:replace="commons/layout::base(~{::title}, ~{::section})"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<title>Hotel</title>
+</head>
+<body>
+	<section>
+		<form th:action="@{/hotels/{id}(id=${hotel.id})}" th:object="${hotel}" method="post">
+			<h3>Profile</h3>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="id">ID</label>
+					<input type="text" class="form-control" th:field="*{id}" size="1" readonly />
+				</div>
+				<div class="form-group col-auto">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" th:field="*{name}" />
+					<div th:errors="*{name}"></div>
+				</div>
+				<div class="form-group col-auto">
+					<label for="roomsCount">Rooms</label>
+					<div class="input-group">
+						<input type="text" class="form-control" th:field="*{roomsCount}" size="1" readonly />
+						<div class="input-group-append">
+							<a class="btn btn-primary" th:href="@{/hotels/{hotelId}/rooms(hotelId=${hotel.id})}">View</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" th:field="*{email}" />
+					<div th:errors="*{email}"></div>
+				</div>
+				<div class="form-group col-auto">
+					<label for="phoneNumber">Phone Number</label> 
+					<input type="tel" class="form-control" th:field="*{phoneNumber}" />
+					<div th:errors="*{phoneNumber}"></div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="city">City</label>
+					<input type="text" class="form-control" th:field="*{city}" />
+					<div th:errors="*{city}"></div>
+				</div>
+				<div class="form-group col-auto">
+					<label for="state">State</label>
+					<input type="text" class="form-control" th:field="*{state}" />
+					<div th:errors="*{state}"></div>
+				</div>
+				<div class="form-group col-auto">
+					<label for="country">Country</label>
+					<input type="text" class="form-control" th:field="*{country}" />
+					<div th:errors="*{country}"></div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<a class="btn btn-secondary" th:href="@{/hotels}">Back</a>
+				</div>
+			</div>
+		</form>
+		<div>
+			<h3>Controls</h3>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="enableStatus">Enabled?</label>
+					<div class="input-group">
+						<input type="text" id="enableStatus" class="form-control" th:value="${hotel.enabled ? 'Yes' : 'No'}" size="1" readonly />
+						<div class="input-group-append">
+							<button th:if="${not hotel.enabled}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#enableModal"
+											th:onclick="'enableHotel(' + ${hotel.id} + ')'">Enable</button>
+							<button th:if="${hotel.enabled}" type="button" class="btn btn-danger" data-toggle="modal" data-target="#disableModal"
+											th:onclick="'disableHotel(' + ${hotel.id} + ')'">Disable</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="activeStatus">Active?</label>
+					<div class="input-group">
+						<input type="text" id="avtiveStatus" class="form-control" th:value="${hotel.active ? 'Yes' : 'No'}" size="1" readonly />
+						<div class="input-group-append">
+							<button th:if="${not hotel.active}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#activateModal"
+											th:onclick="'activateHotel(' + ${hotel.id} + ')'">Activate</button>
+							<button th:if="${hotel.active}" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deactivateModal"
+											th:onclick="'deactivateHotel(' + ${hotel.id} + ')'">Deactivate</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<h3>Personnel</h3>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="managerFullName">Manager</label>
+					<input type="text" id="managerFullName" class="form-control" th:value="${hotel.managerFullName}" readonly />
+				</div>
+			</div>
+		</div>
+		<div th:if="${not #strings.isEmpty(successMessage)}" class="alert alert-success alert-dismissible fixed-top">
+			<div class="text-center font-weight-bold" th:text="${successMessage}"></div>
+			<button type="button" class="close" data-dismiss="alert">
+				<span>&times;</span>
+			</button>
+		</div>
+		<div th:replace="hotel/fragments/modals::enableModal"></div>
+		<div th:replace="hotel/fragments/modals::disableModal"></div>
+		<div th:replace="hotel/fragments/modals::activateModal"></div>
+		<div th:replace="hotel/fragments/modals::deactivateModal"></div>
+		<script>
+			function enableHotel(id) {
+				$("#enableForm").attr("action", "[[@{/hotels/}]]" + id + "/enable");
+			}
+			
+			function disableHotel(id) {
+				$("#disableForm").attr("action", "[[@{/hotels/}]]" + id + "/disable");
+			}
+			
+			function activateHotel(id) {
+				$("#activateForm").attr("action", "[[@{/hotels/}]]" + id + "/activate");
+			}
+			
+			function deactivateHotel(id) {
+				$("#deactivateForm").attr("action", "[[@{/hotels/}]]" + id + "/deactivate");
+			}
+		</script>
+	</section>
+</body>
+</html>

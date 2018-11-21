@@ -45,7 +45,7 @@ public class HotelRestController {
 		return hotelService.findByNameOrAddress(searchParam);
 	}
 
-	@PostMapping
+	@PostMapping("/add")
 	@JsonView(ItemView.class)
 	public Hotel add(@RequestBody Hotel hotel) {
 		return hotelService.add(hotel);

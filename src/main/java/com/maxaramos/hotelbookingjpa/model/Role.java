@@ -16,6 +16,11 @@ import lombok.Getter;
 @Getter
 public class Role implements GrantedAuthority {
 
+	public static final String ADMIN = "admin";
+	public static final String MANAGER = "manager";
+	public static final String RECEPTIONIST = "receptionist";
+	public static final String GUEST = "guest";
+
 	private static final long serialVersionUID = 7191207013807877084L;
 
 	@Id

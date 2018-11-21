@@ -45,6 +45,12 @@ public class User implements UserDetails {
 	@Column(name = "password")
 	private String password;
 
+	@Transient
+	private String rawPassword;
+
+	@Transient
+	private String confirmRawPassword;
+
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	@JsonView({ CollectionView.class, ItemView.class })
@@ -53,6 +59,15 @@ public class User implements UserDetails {
 	@Column(name = "enabled")
 	@JsonView({ CollectionView.class, ItemView.class })
 	private boolean enabled;
+
+	@Transient
+	private boolean accountNonLocked = true;
+
+	@Transient
+	private boolean accountNonExpired = true;
+
+	@Transient
+	private boolean credentialsNonExpired = true;
 
 	@Column(name = "first_name")
 	@JsonView(ItemView.class)
@@ -70,14 +85,10 @@ public class User implements UserDetails {
 	@JsonView(ItemView.class)
 	private String phoneNumber;
 
-	@Transient
-	private boolean accountNonLocked = true;
-
-	@Transient
-	private boolean accountNonExpired = true;
-
-	@Transient
-	private boolean credentialsNonExpired = true;
+	public static User newInstance() {
+		User user = new User();
+		return user;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
