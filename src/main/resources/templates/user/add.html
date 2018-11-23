@@ -4,17 +4,53 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-	<title>Hotel</title>
+	<title>User</title>
 </head>
 <body>
 	<section>
-		<form th:action="@{/hotels/add/{role}(role=${roleName})}" th:object="${user}" method="post">
-			<h3>Profile</h3>
+		<a class="btn btn-secondary" th:href="@{/users}">Back</a>
+		<form id="addForm" action="#" th:object="${user}" method="post">
+			<h3>Info</h3>
 			<div class="form-row">
 				<div class="form-group col-auto">
-					<label for="name">Name</label>
-					<input type="text" class="form-control" th:field="*{name}" />
-					<div th:errors="*{name}"></div>
+					<label for="role">Role</label>
+					<select id="role" class="custom-select" onchange="selectRole()" required>
+					  <option value="" disabled hidden selected>Select Role</option>
+					  <option value="manager">manager</option>
+					  <option value="receptionist">receptionist</option>
+					  <option value="guest">guest</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="username">Username</label>
+					<input type="text" class="form-control" th:field="*{username}" />
+					<div th:errors="*{username}"></div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="rawPassword">Password</label>
+					<input type="password" class="form-control" th:field="*{rawPassword}" />
+					<div th:errors="*{rawPassword}"></div>
+				</div>
+				<div class="form-group col-auto">
+					<label for="confirmRawPassword">Confirm Password</label>
+					<input type="password" class="form-control" th:field="*{confirmRawPassword}" />
+					<div th:errors="*{confirmRawPassword}"></div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-auto">
+					<label for="firstName">First Name</label>
+					<input type="text" class="form-control" th:field="*{firstName}" />
+					<div th:errors="*{firstName}"></div>
+				</div>
+				<div class="form-group col-auto">
+					<label for="lastName">Last Name</label> 
+					<input type="text" class="form-control" th:field="*{lastName}" />
+					<div th:errors="*{lastName}"></div>
 				</div>
 			</div>
 			<div class="form-row">
@@ -31,28 +67,26 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-auto">
-					<label for="city">City</label>
-					<input type="text" class="form-control" th:field="*{city}" />
-					<div th:errors="*{city}"></div>
-				</div>
-				<div class="form-group col-auto">
-					<label for="state">State</label>
-					<input type="text" class="form-control" th:field="*{state}" />
-					<div th:errors="*{state}"></div>
-				</div>
-				<div class="form-group col-auto">
-					<label for="country">Country</label>
-					<input type="text" class="form-control" th:field="*{country}" />
-					<div th:errors="*{country}"></div>
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-auto">
 					<button type="submit" class="btn btn-primary">Save</button>
-					<a class="btn btn-secondary" th:href="@{/hotels}">Cancel</a>
 				</div>
 			</div>
 		</form>
+		<script>
+			function selectRole() {
+				var selectedRole = $("#role").val();
+				$("#addForm").attr("action", "[[@{/users/add/}]]" + selectedRole);
+			}
+			
+			$(document).ready(function() {
+				if ($(".alert").length) {					
+					window.setTimeout(function() {
+						$(".alert").slideUp("slow", function() {							
+							$(".alert").alert("close");
+						});
+					}, 3000);
+				}
+			});
+		</script>
 	</section>
 </body>
 </html>

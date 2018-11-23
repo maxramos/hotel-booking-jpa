@@ -98,6 +98,14 @@ public class UserService {
 		return userDao.save(updatedUser);
 	}
 
+	public User changePassword(Long id, User user) {
+		String password = passwordEncoder.encode(user.getRawPassword());
+
+		User updatedUser = userDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("User [id=%s] not found.", id)));
+		updatedUser.setPassword(password);
+		return userDao.save(updatedUser);
+	}
+
 	public User enable(Long id) {
 		User updatedUser = userDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("User [id=%s] not found.", id)));
 		updatedUser.setEnabled(true);

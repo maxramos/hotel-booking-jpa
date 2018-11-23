@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html th:replace="commons/layout::base(~{::title}, ~{::section})"
 	xmlns="http://www.w3.org/1999/xhtml"
@@ -9,12 +10,12 @@
 <body>
 	<section>
 		<form th:action="@{/hotels/search/byNameOrAddress}" method="get">
-			<div class="form-row d-flex justify-content-end mt-2">
+			<div class="form-row d-flex justify-content-end">
 				<div class="col-auto">
 					<input type="text" id="searchParam" name="searchParam" class="form-control" placeholder="Name or Address" />
 				</div>	
 				<div class="col-auto">
-					<button type="submit" class="btn btn-primary  mr-3">Search</button>
+					<button type="submit" class="btn btn-primary">Search</button>
 				</div>
 			</div>
 		</form>
@@ -49,7 +50,7 @@
 			</table>
 		</div>
 		<div class="d-flex justify-content-end">
-			<a class="btn btn-primary mr-3" th:href="@{/hotels/add}">Add</a>
+			<a class="btn btn-primary" th:href="@{/hotels/add}">Add</a>
 		</div>
 		<div th:if="${not #strings.isEmpty(successMessage)}" class="alert alert-success alert-dismissible fixed-top">
 			<div class="text-center font-weight-bold" th:text="${successMessage}"></div>
